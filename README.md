@@ -133,7 +133,7 @@ LIPM/
 ## � Installation Methods
 
 ### Method 1: Windows Executable (Recommended)
-1. Download latest release from [Releases](https://github.com/YourUsername/LIPM/releases)
+1. Download latest release from [Releases](https://github.com/AlertX1978/LIPM/releases)
 2. Extract `LIPM-Package.zip`
 3. Run `LIPM.exe`
 4. Enter passphrase and configure settings
@@ -312,8 +312,8 @@ Use responsibly and at your own risk.
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/YourUsername/LIPM/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/YourUsername/LIPM/discussions)
+- **Issues**: [GitHub Issues](https://github.com/AlertX1978/LIPM/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/AlertX1978/LIPM/discussions)
 
 ---
 
