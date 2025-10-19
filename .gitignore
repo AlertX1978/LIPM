@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Application Data
+data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Sensitive Configuration
+config.json
+config.json.backup
+credentials.json
+settings.json
+*.enc
+
+# Logs
+logs/
+*.log
+
+# Playwright
+.playwright/
+playwright-report/
+test-results/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Telegram Bot Session
+telegram_session/

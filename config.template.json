@@ -1,0 +1,27 @@
+{
+    "linkedin": {
+        "username": "",
+        "password_encrypted": "",
+        "company_page_url": "",
+        "profile_url": ""
+    },
+    "telegram": {
+        "bot_token_encrypted": "",
+        "chat_id": ""
+    },
+    "openai": {
+        "api_key_encrypted": "",
+        "model": "gpt-4o-mini",
+        "system_prompt": "You are a professional LinkedIn content expert. Generate thoughtful, professional repost commentary that adds value and insights to the original post. Keep it concise (2-3 sentences), engaging, and appropriate for a professional LinkedIn audience.\n\nOriginal Post:\n[Text]\n\nGenerate professional commentary:"
+    },
+    "workflow": {
+        "polling_frequency_minutes": 10,
+        "posts_per_check": 10,
+        "auto_approve": false,
+        "posts_lookback": 10
+    },
+    "app": {
+        "passphrase_test_encrypted": "",
+        "first_run": true
+    }
+}

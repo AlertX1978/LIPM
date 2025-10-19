@@ -1,0 +1,30 @@
+# LinkedIn Post Monitor - Dependencies
+# Python 3.14 compatible
+
+# GUI Framework
+customtkinter==5.2.2
+pillow==10.4.0
+
+# Web Automation
+playwright==1.48.0
+
+# AI/ML
+openai==1.51.2
+httpx==0.27.0  # Pin to 0.27.0 for OpenAI compatibility (0.28+ has breaking changes)
+
+# Telegram Bot
+python-telegram-bot==21.7
+
+# Encryption & Security
+cryptography==43.0.1
+
+# Utilities
+python-dotenv==1.0.1
+requests==2.32.3
+schedule==1.2.2
+
+# Data Handling
+python-dateutil==2.9.0
+
+# Logging
+colorlog==6.8.2
