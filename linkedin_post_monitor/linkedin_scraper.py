@@ -11,7 +11,7 @@ from pathlib import Path
 from playwright.async_api import async_playwright, Browser, Page, BrowserContext
 from playwright.async_api import TimeoutError as PlaywrightTimeoutError
 
-from .utils import logger
+from .utils import logger, get_app_directory
 
 
 class LinkedInScraper:
@@ -39,8 +39,8 @@ class LinkedInScraper:
         # Database reference (set by monitor)
         self.database = None
         
-        # Session persistence
-        self.session_dir = Path(__file__).parent.parent / "data" / "linkedin_session"
+        # Session persistence - store in app directory
+        self.session_dir = get_app_directory() / "data" / "linkedin_session"
         self.session_dir.mkdir(parents=True, exist_ok=True)
     
     async def _init_browser(self):

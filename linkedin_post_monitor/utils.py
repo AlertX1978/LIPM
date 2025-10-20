@@ -4,9 +4,29 @@ Utilities and Helper Functions
 
 import logging
 import colorlog
+import sys
+import os
 from pathlib import Path
 from typing import Optional
 from datetime import datetime
+
+
+def get_app_directory() -> Path:
+    """
+    Get the application directory.
+    
+    When running as PyInstaller executable, returns the directory containing the .exe
+    When running as Python script, returns the parent directory of the package
+    
+    Returns:
+        Path to application directory
+    """
+    if getattr(sys, 'frozen', False):
+        # Running as compiled executable
+        return Path(sys.executable).parent
+    else:
+        # Running as Python script
+        return Path(__file__).parent.parent
 
 
 def setup_logger(name: str, log_file: Optional[str] = None, level: int = logging.INFO) -> logging.Logger:
@@ -15,7 +35,7 @@ def setup_logger(name: str, log_file: Optional[str] = None, level: int = logging
     
     Args:
         name: Logger name
-        log_file: Optional log file path
+        log_file: Optional log file path (relative to app directory if not absolute)
         level: Logging level
         
     Returns:
@@ -48,9 +68,14 @@ def setup_logger(name: str, log_file: Optional[str] = None, level: int = logging
     # File handler (if specified)
     if log_file:
         log_path = Path(log_file)
+        
+        # Make path absolute relative to app directory if it's relative
+        if not log_path.is_absolute():
+            log_path = get_app_directory() / log_path
+        
         log_path.parent.mkdir(parents=True, exist_ok=True)
         
-        file_handler = logging.FileHandler(log_file, encoding='utf-8')
+        file_handler = logging.FileHandler(log_path, encoding='utf-8')
         file_handler.setLevel(level)
         file_formatter = logging.Formatter(
             '%(asctime)s - %(name)s - %(levelname)s - %(message)s',

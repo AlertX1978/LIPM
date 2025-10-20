@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Dict, List, Optional, Any
 from datetime import datetime
-from .utils import logger
+from .utils import logger, get_app_directory
 
 
 class PostDatabase:
@@ -25,10 +25,10 @@ class PostDatabase:
         Initialize post database.
         
         Args:
-            db_path: Path to database JSON file (default: ./data/posts.json)
+            db_path: Path to database JSON file (default: ./data/posts.json in app directory)
         """
         if db_path is None:
-            self.db_path = Path(__file__).parent.parent / "data" / "posts.json"
+            self.db_path = get_app_directory() / "data" / "posts.json"
         else:
             self.db_path = Path(db_path)
         

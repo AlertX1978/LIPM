@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 from typing import Dict, Any, Optional
 from .encryption import EncryptionManager
+from .utils import get_app_directory
 
 
 class ConfigManager:
@@ -54,11 +55,11 @@ class ConfigManager:
         Initialize configuration manager.
         
         Args:
-            config_path: Path to config JSON file (default: ./config.json)
+            config_path: Path to config JSON file (default: ./config.json in app directory)
         """
         if config_path is None:
-            # Store config in same directory as the script
-            self.config_path = Path(__file__).parent.parent / "config.json"
+            # Store config in same directory as the executable/script
+            self.config_path = get_app_directory() / "config.json"
         else:
             self.config_path = Path(config_path)
         
