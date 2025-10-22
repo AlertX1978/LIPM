@@ -41,7 +41,8 @@ A professional automation tool that monitors LinkedIn company pages, generates A
 ## 📋 Prerequisites
 
 ### Required
-- **Python 3.13+** - [Download Python](https://www.python.org/downloads/)
+- **Google Chrome** - [Download Chrome](https://www.google.com/chrome/) (Required for executable version)
+- **Python 3.13+** - [Download Python](https://www.python.org/downloads/) (Source only)
 - **LinkedIn Account** - Personal profile with reposting permissions
 - **Telegram Bot Token** - Create via [@BotFather](https://t.me/botfather)
 - **Telegram Chat ID** - Your personal chat ID ([Get it here](https://t.me/userinfobot))
@@ -133,10 +134,19 @@ LIPM/
 ## � Installation Methods
 
 ### Method 1: Windows Executable (Recommended)
+
+**Prerequisites:**
+- ✅ Install [Google Chrome](https://www.google.com/chrome/) (Required!)
+
+**Steps:**
 1. Download latest release from [Releases](https://github.com/AlertX1978/LIPM/releases)
-2. Extract `LIPM-Package.zip`
+2. Extract `LIPM-Package.zip` to any folder
 3. Run `LIPM.exe`
-4. Enter passphrase and configure settings
+4. Enter passphrase (default: `!Paralax1`)
+5. Configure your settings (LinkedIn, Telegram, OpenAI)
+6. Click "Start Monitoring"
+
+**Note:** The executable uses your system's Chrome browser. All data files (config, database, logs) are stored in the same folder as the .exe
 
 ### Method 2: Python Source
 See installation instructions above
@@ -217,6 +227,11 @@ See [Windows Installer Guide](#windows-installer-setup) below
 ## �🐛 Troubleshooting
 
 ### Common Issues
+
+**"Browser executable doesn't exist" or "Playwright not found"**
+- **For .exe users**: Install Google Chrome from https://www.google.com/chrome/
+- **For Python users**: Run `playwright install chromium` after installing dependencies
+- The executable automatically uses your system's Chrome browser
 
 **"Passphrase invalid"**
 - First run: Use default `!Paralax1`

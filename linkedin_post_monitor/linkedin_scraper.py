@@ -45,19 +45,47 @@ class LinkedInScraper:
     
     async def _init_browser(self):
         """Initialize browser with stealth mode."""
+        import sys
+        import os
+        
         playwright = await async_playwright().start()
         
+        # Determine browser executable path
+        # When running as PyInstaller exe, use system-installed browsers
+        browser_path = None
+        if getattr(sys, 'frozen', False):
+            # Running as compiled executable - try to find system Chrome/Chromium
+            possible_chrome_paths = [
+                os.path.expandvars(r"%ProgramFiles%\Google\Chrome\Application\chrome.exe"),
+                os.path.expandvars(r"%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"),
+                os.path.expandvars(r"%LocalAppData%\Google\Chrome\Application\chrome.exe"),
+            ]
+            for path in possible_chrome_paths:
+                if os.path.exists(path):
+                    browser_path = path
+                    logger.info(f"Found Chrome at: {browser_path}")
+                    break
+            
+            if not browser_path:
+                logger.warning("Chrome not found, using Playwright's bundled browser (may require manual installation)")
+        
         # Launch browser with stealth settings
-        self.browser = await playwright.chromium.launch(
-            headless=False,  # Set to True for production
-            args=[
+        launch_options = {
+            "headless": False,  # Set to True for production
+            "args": [
                 '--disable-blink-features=AutomationControlled',
                 '--disable-dev-shm-usage',
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
                 '--disable-web-security'
             ]
-        )
+        }
+        
+        # Add executable_path if found
+        if browser_path:
+            launch_options["executable_path"] = browser_path
+        
+        self.browser = await playwright.chromium.launch(**launch_options)
         
         # Create context with session persistence
         context_options = {

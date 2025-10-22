@@ -13,6 +13,31 @@ from linkedin_post_monitor.gui import LinkedInMonitorGUI
 from linkedin_post_monitor.utils import logger
 
 
+def check_browser_availability():
+    """Check if Chrome browser is available."""
+    import os
+    
+    if getattr(sys, 'frozen', False):
+        # Running as executable - check for Chrome
+        chrome_paths = [
+            os.path.expandvars(r"%ProgramFiles%\Google\Chrome\Application\chrome.exe"),
+            os.path.expandvars(r"%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"),
+            os.path.expandvars(r"%LocalAppData%\Google\Chrome\Application\chrome.exe"),
+        ]
+        
+        chrome_found = any(os.path.exists(path) for path in chrome_paths)
+        
+        if not chrome_found:
+            logger.warning("=" * 60)
+            logger.warning("⚠️ Google Chrome not detected on this system")
+            logger.warning("LIPM requires Chrome to automate LinkedIn")
+            logger.warning("Please install Chrome from: https://www.google.com/chrome/")
+            logger.warning("=" * 60)
+            return False
+    
+    return True
+
+
 def main():
     """
     Main application entry point.
@@ -21,6 +46,9 @@ def main():
         logger.info("=" * 60)
         logger.info("LinkedIn Post Monitor v1.0.0")
         logger.info("=" * 60)
+        
+        # Check browser availability
+        check_browser_availability()
         
         # Create and run GUI
         app = LinkedInMonitorGUI()
